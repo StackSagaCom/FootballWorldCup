@@ -44,6 +44,32 @@ class Program
 
                     case 2:
                         // Update score
+                        Console.Write("Enter the name of the home team: ");
+                        string updateHomeTeam = Console.ReadLine();
+
+                        Console.Write("Enter the name of the away team: ");
+                        string updateAwayTeam = Console.ReadLine();
+
+                        Console.Write("Enter the new score for the home team: ");
+                        int newHomeTeamScore;
+                        if (int.TryParse(Console.ReadLine(), out newHomeTeamScore))
+                        {
+                            Console.Write("Enter the new score for the away team: ");
+                            int newAwayTeamScore;
+                            if (int.TryParse(Console.ReadLine(), out newAwayTeamScore))
+                            {
+                                scoreBoard.UpdateScore(updateHomeTeam, updateAwayTeam, newHomeTeamScore, newAwayTeamScore);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid input for the away team score.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input for the home team score.");
+                        }
+                        break;
 
                     case 3:
                         // Finish game

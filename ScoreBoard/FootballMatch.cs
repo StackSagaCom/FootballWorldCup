@@ -12,5 +12,11 @@ namespace ScoreBoard
         public string AwayTeam { get; set; }
         public int HomeTeamScore { get; set; }
         public int AwayTeamScore { get; set; }
+
+        public FootballMatch(string homeTeam, string awayTeam)
+        {
+            HomeTeam = homeTeam;
+            AwayTeam = awayTeam;
+        }
     }
 }

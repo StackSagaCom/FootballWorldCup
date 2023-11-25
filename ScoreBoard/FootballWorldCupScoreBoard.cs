@@ -13,7 +13,7 @@ namespace ScoreBoard
 
         public void StartGame(string homeTeam, string awayTeam)
         {
-            var match = new FootballMatch
+            var match = new FootballMatch(homeTeam, awayTeam)
             {
                 HomeTeam = homeTeam,
                 AwayTeam = awayTeam,
@@ -50,5 +50,18 @@ namespace ScoreBoard
             }
         }
 
+        public void FinishGame(string homeTeam, string awayTeam)
+        {
+            var matchToRemove = matches.FirstOrDefault(m => m.HomeTeam == homeTeam && m.AwayTeam == awayTeam);
+
+            if (matchToRemove != null)
+            {
+                matches.Remove(matchToRemove);
+            }
+            else
+            {
+                Console.WriteLine($"Error: The match between {homeTeam} and {awayTeam} does not exist. Unable to finish the game.");
+            }
+        }
     }
 }

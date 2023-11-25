@@ -36,5 +36,19 @@ namespace ScoreBoard.Test
             Assert.Equal(2, updatedMatch.HomeTeamScore);
             Assert.Equal(1, updatedMatch.AwayTeamScore);
         }
+
+        [Fact]
+        public void FinishGame_ShouldRemoveMatchFromScoreBoard()
+        {
+            // Arrange
+            var scoreBoard = new FootballWorldCupScoreBoard();
+            scoreBoard.StartGame("HomeTeam", "AwayTeam");
+
+            // Act
+            scoreBoard.FinishGame("HomeTeam", "AwayTeam");
+
+            // Assert
+            Assert.Empty(scoreBoard.GetSummaryByTotalScore());
+        }
     }
 }

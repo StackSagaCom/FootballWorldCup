@@ -31,14 +31,14 @@ class Program
                         Console.Write("Enter the name of the away team: ");
                         string awayTeam = Console.ReadLine();
 
-                        if (homeTeam.ToLower() != awayTeam.ToLower())
+                        if (!string.IsNullOrEmpty(homeTeam) && !string.IsNullOrEmpty(awayTeam) && homeTeam.ToLower() != awayTeam.ToLower())
                         {
                             scoreBoard.StartGame(homeTeam, awayTeam);
                             Console.WriteLine();
                         }
                         else
                         {
-                            Console.WriteLine("For a football game, we would need two different teams. Please, try again with correct team names \n");
+                            Console.WriteLine("For a football game, we would need two different teams. Please, try again with correct team names. Football teams can not be null \n");
                         }
                         break;
 
@@ -50,29 +50,45 @@ class Program
                         Console.Write("Enter the name of the away team: ");
                         string updateAwayTeam = Console.ReadLine();
 
-                        Console.Write("Enter the new score for the home team: ");
-                        int newHomeTeamScore;
-                        if (int.TryParse(Console.ReadLine(), out newHomeTeamScore))
+                        if (!string.IsNullOrEmpty(updateHomeTeam) && !string.IsNullOrEmpty(updateAwayTeam) && updateHomeTeam.ToLower() != updateAwayTeam.ToLower())
                         {
-                            Console.Write("Enter the new score for the away team: ");
-                            int newAwayTeamScore;
-                            if (int.TryParse(Console.ReadLine(), out newAwayTeamScore))
+
+                            Console.Write("Enter the new score for the home team: ");
+                            int newHomeTeamScore;
+                            if (int.TryParse(Console.ReadLine(), out newHomeTeamScore))
                             {
-                                scoreBoard.UpdateScore(updateHomeTeam, updateAwayTeam, newHomeTeamScore, newAwayTeamScore);
+                                Console.Write("Enter the new score for the away team: ");
+                                int newAwayTeamScore;
+                                if (int.TryParse(Console.ReadLine(), out newAwayTeamScore))
+                                {
+                                    scoreBoard.UpdateScore(updateHomeTeam, updateAwayTeam, newHomeTeamScore, newAwayTeamScore);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Invalid input for the away team score.");
+                                }
                             }
                             else
                             {
-                                Console.WriteLine("Invalid input for the away team score.");
+                                Console.WriteLine("Invalid input for the home team score.");
                             }
-                        }
-                        else
-                        {
-                            Console.WriteLine("Invalid input for the home team score.");
                         }
                         break;
 
                     case 3:
                         // Finish game
+                        Console.Write("Enter the name of the home team: ");
+                        string finishHomeTeam = Console.ReadLine();
+
+                        Console.Write("Enter the name of the away team: ");
+                        string finishAwayTeam = Console.ReadLine();
+
+                        if (!string.IsNullOrEmpty(finishHomeTeam) && !string.IsNullOrEmpty(finishAwayTeam) && finishHomeTeam.ToLower() != finishAwayTeam.ToLower())
+                        
+                        {
+                            scoreBoard.FinishGame(finishHomeTeam, finishAwayTeam);
+                        }
+                        break;
 
                     case 4:
                         // Display current state
